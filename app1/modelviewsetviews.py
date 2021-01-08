@@ -11,3 +11,5 @@ class employeeViewSet(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     # permission_classes = [permissions.IsAuthenticated]
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+# mbr- method resolution order
