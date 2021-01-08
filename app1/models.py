@@ -6,5 +6,7 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=30)
     emp_no = models.IntegerField()
 
+    # employee = models.Manager()
+
     def __str__(self):
         return self.first_name

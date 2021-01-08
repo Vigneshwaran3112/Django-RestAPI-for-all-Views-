@@ -4,6 +4,7 @@ from rest_framework import generics
 from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import permissions
 from .serializers import EmployeeSerializer
 from .models import Employee
 
@@ -11,14 +12,15 @@ class employeeList(ListCreateAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
 
-    def list(self, request):
-        queryset = self.get_queryset()
-        serializer = EmployeeSerializer(queryset, many=True)
-        return Response(serializer.data)
+    # def list(self, request):
+        # queryset = self.get_queryset()
+        # serializer = EmployeeSerializer(queryset, many=True)
+        # return Response(serializer.data)
 
 class employeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    # permission_classes = [permissions.IsAuthenticated]
 
 
 

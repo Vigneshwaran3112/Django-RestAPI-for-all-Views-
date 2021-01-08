@@ -3,6 +3,7 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import permissions
 from .serializers import EmployeeSerializer
 from .models import Employee
 
@@ -17,6 +18,7 @@ class employeeList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+        permission_classes = [permissions.IsAuthenticated]
         e = request.data
         d = Employee.objects.create(first_name=e['first_name'], last_name=e['last_name'], emp_no=e['emp_no'])
         d.save()
@@ -24,6 +26,7 @@ class employeeList(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
+        permission_classes = [permissions.IsAuthenticated]
         emp = Employee.objects.get(pk=pk)
         serializer = EmployeeSerializer(emp, data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -31,6 +34,7 @@ class employeeList(APIView):
         return Response(serializer.data)
 
     def delete(self, request, pk):
+        permission_classes = [permissions.IsAuthenticated]
         emp = Employee.objects.get(pk=pk)
         emp.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

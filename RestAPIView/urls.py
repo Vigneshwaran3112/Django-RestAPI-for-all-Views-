@@ -15,20 +15,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.urlpatterns import format_suffix_patterns
 from app1 import classviews, functionviews, modelviewsetviews, genericviews, viewsetviews
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-# router.register('emp', modelviewsetviews.employeeViewSet)
-router.register(r'emp', viewsetviews.employeeViewSet, basename='emp')
+router.register('empmv', modelviewsetviews.employeeViewSet)
+router.register(r'empv', viewsetviews.employeeViewSet, basename='empv')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('emp/', classviews.employeeList.as_view(), name="emp_list"),
-    # path('emp/<int:pk>/', classviews.employeeList.as_view(), name="emp_detail"),
-    # path('emp/', functionviews.employeeList, name="emp_list"),
-    # path('emp/<int:pk>/', functionviews.employeeList, name="emp_detail"),
-    # path('emp/', genericviews.employeeList.as_view(), name="emp_list"),
-    # path('emp/<int:pk>/', genericviews.employeeDetail.as_view(), name="emp_detail"),
-    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')), 
+    path('empcv/', classviews.employeeList.as_view(), name="emp_list"),
+    path('empcv/<int:pk>/', classviews.employeeList.as_view(), name="emp_detail"),
+    path('emp/', functionviews.employeeList, name="emp_list"),
+    path('emp/<int:pk>/', functionviews.employeeList, name="emp_detail"),
+    path('empgv/', genericviews.employeeList.as_view(), name="emp_list"),
+    path('empgv/<int:pk>/', genericviews.employeeDetail.as_view(), name="emp_detail"),
+    path('xml/', functionviews.xmlview),
 ]
+
+urlpatterns += router.urls
+# urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'xml', 'html', 'yaml'])
