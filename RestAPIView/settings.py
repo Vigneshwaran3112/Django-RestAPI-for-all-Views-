@@ -47,12 +47,20 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 2,
-    'DEFAULT_PARSER_CLASSES': [
-        'rest_framework_xml.parsers.XMLParser',
-    ],
-    'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework_xml.renderers.XMLRenderer',
-    ],
+    # for xml format support
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework_xml.parsers.XMLParser',
+    # ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework_xml.renderers.XMLRenderer',
+    # ],
+    #for yaml format support
+    # 'DEFAULT_PARSER_CLASSES': [
+    #     'rest_framework_yaml.parsers.YAMLParser',
+    # ],
+    # 'DEFAULT_RENDERER_CLASSES': [
+    #     'rest_framework_yaml.renderers.YAMLRenderer',
+    # ],
 }
 
 

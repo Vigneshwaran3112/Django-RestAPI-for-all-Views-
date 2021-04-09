@@ -5,8 +5,8 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
-from .serializers import EmployeeSerializer
-from .models import Employee
+from .serializers import *
+from .models import *
 
 class employeeList(ListCreateAPIView):
     queryset = Employee.objects.all()
@@ -21,6 +21,11 @@ class employeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+
+class UserDataCreateAPIView(generics.ListCreateAPIView):
+    queryset = UserData.objects.all()
+    serializer_class = UserDataCreateSerializer
 
 
 

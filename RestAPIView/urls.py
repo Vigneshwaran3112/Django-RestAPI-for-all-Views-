@@ -33,6 +33,8 @@ urlpatterns = [
     path('empgv/', genericviews.employeeList.as_view(), name="emp_list"),
     path('empgv/<int:pk>/', genericviews.employeeDetail.as_view(), name="emp_detail"),
     path('xml/', functionviews.xmlview),
+
+    path('list_create/', genericviews.UserDataCreateAPIView.as_view()),
 ]
 
 urlpatterns += router.urls
